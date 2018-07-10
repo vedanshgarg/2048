@@ -54,7 +54,7 @@ button.addEventListener('click',function(){
 	},200);
 
 	setTimeout(function(){
-		playArea.style.padding="7px";
+		playArea.style.padding="5px";
 	},230);
 
 	SetUpBoard();
