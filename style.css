@@ -36,7 +36,7 @@ body{
 	width: 50%;
 	display: flex;
 	border-radius:10px 0px 0px 0px;
-	background-color: #81c784;
+	background-color: #4caf50;
 	color: white;
 	font-size: 0px;
 	justify-content: center;
@@ -80,17 +80,17 @@ body{
 
 
 .row{
-	margin-top: 5px;
+	margin-top: 7px;
 	height: 25%;
 	display: flex;
-	margin-bottom:5px; 
+	margin-bottom:7px; 
 
 }
 
 
 .empty-tile{
-	margin-left: 5px;
-	margin-right: 5px;
+	margin-left: 7px;
+	margin-right: 7px;
 	width: 25%;
 	height:100%;
 	background-color:#cdc1b4;
@@ -139,4 +139,25 @@ body{
 .n128{
 	background-color: #edcf72;
 	font-size: 45px;
+	box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.2381), inset 0 0 0 1px rgba(255, 255, 255, 0.14286);
+}
+.n256{
+	background-color: #edca59;
+	font-size: 45px;
+	box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.31746), inset 0 0 0 1px rgba(255, 255, 255, 0.19048);
+}
+.n512{
+	background: #edc850;
+	font-size: 45px;
+    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.39683), inset 0 0 0 1px rgba(255, 255, 255, 0.2381);
+}
+.n1024{
+	background: #edc53f;
+	font-size: 35px;
+    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.47619), inset 0 0 0 1px rgba(255, 255, 255, 0.28571);
+}
+.n2048{
+	background: #edc22e;
+	font-size: 35px;
+    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.55556), inset 0 0 0 1px rgba(255, 255, 255, 0.33333);
 }

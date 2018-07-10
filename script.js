@@ -54,7 +54,7 @@ button.addEventListener('click',function(){
 	},200);
 
 	setTimeout(function(){
-		playArea.style.padding="5px";
+		playArea.style.padding="7px";
 	},230);
 
 	SetUpBoard();
@@ -80,7 +80,6 @@ function SetUpBoard(){
 	window.onkeydown= function(event) {
 
 		event.preventDefault();
-		fixBoard();
 		if (event.keyCode === 37) {
 			pressLeft();
 		}
@@ -131,7 +130,6 @@ function AddTile(){
 		while(!addStatus){
 			addStatus=tryAdd();
 		}
-		scoreValue.innerHTML=parseInt(scoreValue.innerHTML)+2;
 
 	}
 
@@ -230,6 +228,7 @@ function pressLeft(){
 				if (currN!=start) {
 					if(board[r][currN-1]==board[r][currN]){
 						board[r][currN-1]*=2;
+						scoreValue.innerHTML=parseInt(scoreValue.innerHTML)+(board[r][currN-1]);
 						boardCount--;
 						board[r][currN]=undefined;
 						moveBy++;
@@ -284,6 +283,7 @@ function pressRight(){
 				if (currN!=start) {
 					if(board[r][currN+1]==board[r][currN]){
 						board[r][currN+1]*=2;
+						scoreValue.innerHTML=parseInt(scoreValue.innerHTML)+(board[r][currN+1]);
 						boardCount--;
 						board[r][currN]=undefined;
 						moveBy++;
@@ -340,6 +340,7 @@ function pressUp(){
 				if (currN!=start) {
 					if(board[currN-1][c]==board[currN][c]){
 						board[currN-1][c]*=2;
+						scoreValue.innerHTML=parseInt(scoreValue.innerHTML)+(board[currN-1][c]);
 						boardCount--;
 						board[currN][c]=undefined;
 						moveBy++;
@@ -391,6 +392,7 @@ function pressDown(){
 				if (currN!=start) {
 					if(board[currN+1][c]==board[currN][c]){
 						board[currN+1][c]*=2;
+						scoreValue.innerHTML=parseInt(scoreValue.innerHTML)+(board[currN+1][c]);
 						boardCount--;
 						board[currN][c]=undefined;
 						moveBy++;
@@ -455,11 +457,11 @@ function mover(ir,ic,fr,fc){
 	console.log("log");
 	let moveAnim=setInterval(function(){
 		if(((cx*xMove)>(xMove*finTileRect.x))||((cy*yMove)>(yMove*finTileRect.y))){
-
 			iniBox.innerHTML="";
 			iniBox.appendChild(iniTile);
 			updater(fr,fc);
 			clearInterval(moveAnim);
+			console.log("anim");
 		}
 		moveTile.style.left=cx+"px";
 		moveTile.style.top=cy+"px";
@@ -511,10 +513,10 @@ function updater(fr,fc){
         numTile.style.fontSize="45px";
         break;
     case 1024:
-        numTile.style.fontSize="30px";
+        numTile.style.fontSize="35px";
         break;
     default:
-        numTile.style.fontSize="30px";
+        numTile.style.fontSize="35px";
 	}
 	
 	numTile.innerHTML=num;
