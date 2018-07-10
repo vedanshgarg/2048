@@ -6,11 +6,13 @@ body{
 	flex-direction: column;
 	justify-content: center;
 	font-family: sans-serif;
+	font-weight: 900;
 }
 #full-Area{
 	padding: 5px;
 	display: flex;
-	flex-direction: row;
+	align-items: center;
+	flex-direction: column;
 	justify-content: center;
 }
 
@@ -25,13 +27,55 @@ body{
 #begin:hover{
 	cursor:pointer;
 }
+#game-header{
+	height: 0px;
+	width: 0px;
+	display: flex;
+}
+#left-pane{
+	width: 50%;
+	display: flex;
+	border-radius:10px 0px 0px 0px;
+	background-color: #81c784;
+	color: white;
+	font-size: 0px;
+	justify-content: center;
+	align-items: center;
+
+}
+#right-pane{
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+
+}
+#score-title{
+	background-color: #ef5350;
+	color: white;
+	font-size: 0px;
+	height: 30%; 
+	display: flex;
+	border-radius:0px 10px 0px 0px;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+#score-value{
+	height: 70%; 
+	font-size: 0px;
+	background-color: #c8e6c9;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
 #play-Area{
 	display: flex;
 	flex-direction: column;
-	background-color: #839488;
+	background-color: #bbada0;
 	width: 0px;
 	height:0px;
-	border-radius:10px;
+	border-radius:0px 0px 10px 10px;
 }
 
 
@@ -49,7 +93,7 @@ body{
 	margin-right: 5px;
 	width: 25%;
 	height:100%;
-	background-color: rgb(205, 193, 180);
+	background-color:#cdc1b4;
 	border-radius:5px;
 	display: flex;
 	align-items: center;
@@ -67,19 +111,32 @@ body{
 	z-index: 0;
 }
 .n2{
-	background-color: #66bb6a;
+	background-color: #eee4da;
 	color: #162525;
 	font-size: 70px;
 }
 .n4{
-	background-color: yellow;
+	background-color: #ecd9b2;
+	color: #162525;
 	font-size: 70px;
 }
 .n8{
-	background-color: red;
+	background-color: #f2b179;
 	font-size: 70px;
 }
 .n16{
-	background-color: blue;
+	background-color: #f59562;
 	font-size: 60px;
+}
+.n32{
+	background-color: #f57b5e;
+	font-size: 60px;
+}
+.n64{
+	background-color: #f65e3b;
+	font-size: 60px;
+}
+.n128{
+	background-color: #edcf72;
+	font-size: 45px;
 }
