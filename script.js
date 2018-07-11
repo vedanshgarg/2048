@@ -26,7 +26,7 @@ button.addEventListener('click',function(){
 
 	let shrink=setInterval(function(){
 		if(button.clientHeight<=2){
-			clearTimeout(shrink);
+			clearInterval(shrink);
 		}
 
 		button.style.height=(button.clientHeight-2)+'px';
@@ -41,7 +41,7 @@ button.addEventListener('click',function(){
 		}
 		let grow=setInterval(function(){
 			if(playArea.clientHeight>500){
-				clearTimeout(grow);
+				clearInterval(grow);
 			}
 			playArea.style.height=(playArea.clientHeight+10)+'px';
 			playArea.style.width=(playArea.clientWidth+10)+'px';
@@ -162,7 +162,7 @@ function tryAdd(){
 					addTile.style.height="98%";
 					addTile.style.width="98%";
 					console.log('add');
-					clearTimeout(growTile);
+					clearInterval(growTile);
 				}
 				if (fs<=70) {
 					addTile.style.fontSize=(fs)+"px";
@@ -184,7 +184,7 @@ function tryAdd(){
 						addTile.style.height="99%";
 						addTile.style.width="99%";
 						addTile.style.fontSize="70px";
-						clearTimeout(growTile);
+						clearInterval(growTile);
 					}
 					addTile.style.fontSize=(fs)+"px";
 					fs+=2;
