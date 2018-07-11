@@ -62,11 +62,11 @@ button.addEventListener('click',function(){
 			gameHeader.style.width=(playArea.clientWidth)+'px';
 
 		},1);
-	},200);
+	},500);
 
 	setTimeout(function(){
 		playArea.style.padding="5px";
-	},230);
+	},500);
 
 	SetUpBoard();
 
@@ -204,7 +204,7 @@ function tryAdd(){
 					fs+=2;
 				},1);
 
-			},200);
+			},500);
 
 
 		}
