@@ -137,11 +137,6 @@ function AddTile(){
 	}
 
 }
-
-
-	
-
-}
 function tryAdd(){
 	let row=Math.random()*4;
 	row=Math.floor(row);
