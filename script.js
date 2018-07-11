@@ -81,6 +81,7 @@ function SetUpBoard(){
 		window.onkeydown= function(event) {
 
 			event.preventDefault();
+
 			if (event.keyCode === 37) {
 				pressLeft();
 			}
@@ -130,15 +131,12 @@ function fixBoard(){
 
 
 function AddTile(){
-	if(boardCount==16){
-		window.alert('You Lost');
-	}else{
-		let addStatus=false;
-		while(!addStatus){
-			addStatus=tryAdd();
-		}
-
+	let addStatus=false;
+	while(!addStatus){
+		addStatus=tryAdd();
 	}
+
+}
 
 
 	
@@ -443,7 +441,9 @@ function mover(ir,ic,fr,fc){
 
 	moveTile.id=iniId+"-m";
 	moveTile.className = iniTile.className;
+
 	moveTile.innerHTML=iniTile.innerHTML;
+	
 	moveTile.style.position="absolute";
 	moveTile.style.height=iniBox.clientHeight+"px";
 	moveTile.style.width=iniBox.clientWidth+"px";
@@ -516,8 +516,12 @@ function updater(fr,fc){
     default:
         numTile.style.fontSize="35px";
 	}
+	if(num==undefined){
+		numTile.innerHTML="";
+	}else{
+		numTile.innerHTML=num;
+	}
 	
-	numTile.innerHTML=num;
 	numTile.className="tile n"+num;
 
 }
