@@ -178,9 +178,9 @@ function tryAdd(){
 					addTile.style.fontSize=(fs)+"px";
 				}
 
-				addTile.style.height=(addTile.clientHeight+3)+'px';
-				addTile.style.width=(addTile.clientWidth+3)+'px';
-				fs+=4.375;
+				addTile.style.height=(addTile.clientHeight+5)+'px';
+				addTile.style.width=(addTile.clientWidth+5)+'px';
+				fs+=7;
 			},1);
 
 
