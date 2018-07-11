@@ -1,12 +1,11 @@
 "use strict";
-console.log('hello');
+var running=false;
 var button=document.querySelector('#begin');
 var playArea=document.querySelector('#play-Area');
 var gameHeader=document.querySelector('#game-header');
 var leftPane=document.querySelector('#left-pane');
 var scoreTitle=document.querySelector('#score-title');
 var scoreValue=document.querySelector('#score-value');
-var timeC=0;
 var board;
 var boardCount=0;
 
@@ -22,7 +21,6 @@ window.addEventListener("keyup", function(event) {
 
 
 button.addEventListener('click',function(){
-	console.log('Clicked');
 
 	let shrink=setInterval(function(){
 		if(button.clientHeight<=2){
@@ -32,7 +30,7 @@ button.addEventListener('click',function(){
 		button.style.height=(button.clientHeight-2)+'px';
 		button.style.width=(button.clientWidth-6)+'px';
 		button.style.fontSize=(button.clientHeight*85/100) -2 +'px';
-		console.log('running');
+		
 	},1)
 
 	setTimeout(function(){
@@ -67,33 +65,41 @@ button.addEventListener('click',function(){
 
 
 function SetUpBoard(){
-	board= new Array(4);
-	for (var i = 0; i < 4; i++) {
-		board[i] = new Array(4);
-	}
-	for (let r =0 ; r <= 3; r++) {
-		for(let c=0; c<=3 ;c++){
-			board[r][c]=undefined;
+	if(running==false){
+		running=true;
+		board= new Array(4);
+		for (var i = 0; i < 4; i++) {
+			board[i] = new Array(4);
 		}
+		for (let r =0 ; r <= 3; r++) {
+			for(let c=0; c<=3 ;c++){
+				board[r][c]=undefined;
+			}
+		}
+
+		AddTile();
+		window.onkeydown= function(event) {
+
+			event.preventDefault();
+			if (event.keyCode === 37) {
+				pressLeft();
+			}
+			if (event.keyCode === 39) {
+				pressRight();
+			}
+			if (event.keyCode === 38) {
+				pressUp();
+			}
+			if (event.keyCode === 40) {
+				pressDown();
+			}
+			if (event.keyCode === 13) {
+				AddTile();
+			}
+		};
 	}
 
-	AddTile();
-	window.onkeydown= function(event) {
-
-		event.preventDefault();
-		if (event.keyCode === 37) {
-			pressLeft();
-		}
-		if (event.keyCode === 39) {
-			pressRight();
-		}
-		if (event.keyCode === 38) {
-			pressUp();
-		}
-		if (event.keyCode === 40) {
-			pressDown();
-		}
-	};
+	
 }
 
 
@@ -161,7 +167,6 @@ function tryAdd(){
 				if(addTile.clientHeight>=emptyTile.clientHeight-20){
 					addTile.style.height="98%";
 					addTile.style.width="98%";
-					console.log('add');
 					clearInterval(growTile);
 				}
 				if (fs<=70) {
@@ -180,7 +185,6 @@ function tryAdd(){
 				let fs=0;
 				let growTile=setInterval(function(){
 					if(fs>=70){
-						console.log('add');
 						addTile.style.height="99%";
 						addTile.style.width="99%";
 						addTile.style.fontSize="70px";
@@ -215,7 +219,6 @@ function pressLeft(){
 				let moveBy=0;
 				for(let c=start; c<=curr ;c++){
 					if(board[r][c]==undefined){
-						console.log('if k andar');
 						empty+=1;
 						moveBy+=1;
 					}
@@ -239,9 +242,8 @@ function pressLeft(){
 				}
 				if(moveBy!=0){
 					nextTile=true;
-
+					mover(r+1,curr+1,r+1,currN+1);
 				}
-				mover(r+1,curr+1,r+1,currN+1);
 				
 				
 			}
@@ -273,7 +275,6 @@ function pressRight(){
 				let moveBy=0;
 				for(let c=start; c>=curr ;c--){
 					if(board[r][c]==undefined){
-						console.log('if k andar');
 						empty+=1;
 						moveBy+=1;
 					}
@@ -297,9 +298,10 @@ function pressRight(){
 				}
 				if(moveBy!=0){
 					nextTile=true;
+					mover(r+1,curr+1,r+1,currN+1);
 
 				}
-				mover(r+1,curr+1,r+1,currN+1);
+		
 
 			}
 
@@ -322,13 +324,11 @@ function pressUp(){
 		let curr=1;
 		let start=0;
 		while(curr<=3){
-			console.log("inside while");
 			if(board[curr][c]!=undefined){
 				let empty=0;
 				let moveBy=0;
 				for(let r=start; r<=curr ;r++){
 					if(board[r][c]==undefined){
-						console.log('if k andar');
 						empty+=1;
 						moveBy+=1;
 					}
@@ -340,8 +340,6 @@ function pressUp(){
 				}
 
 				let currN=curr-empty;
-				
-				console.log(curr,empty,currN,c);
 
 				if (currN!=start) {
 					if(board[currN-1][c]==board[currN][c]){
@@ -357,9 +355,9 @@ function pressUp(){
 				
 				if(moveBy!=0){
 					nextTile=true;
+				mover(curr+1,c+1,currN+1,c+1);
 
 				}
-				mover(curr+1,c+1,currN+1,c+1);
 			}
 
 			curr++;
@@ -386,7 +384,6 @@ function pressDown(){
 				let moveBy=0;
 				for(let r=start; r>=curr ;r--){
 					if(board[r][c]==undefined){
-						console.log('if k andar');
 						empty+=1;
 						moveBy+=1;
 					}
@@ -410,10 +407,10 @@ function pressDown(){
 				}
 				if(moveBy!=0){
 					nextTile=true;
-					// mover(r+1,curr+1,r+1,currN+1);
+				mover(curr+1,c+1,currN+1,c+1);
+
 
 				}
-				mover(curr+1,c+1,currN+1,c+1);
 			}
 
 			curr--;
@@ -463,26 +460,18 @@ function mover(ir,ic,fr,fc){
 	
 	let cx=iniTileRect.x;
 	let cy=iniTileRect.y;
-	console.log("log");
 	let moveAnim=setInterval(function(){
 		if(((cx*xMove)>(xMove*finTileRect.x))||((cy*yMove)>(yMove*finTileRect.y))){
 			iniBox.innerHTML="";
 			iniBox.appendChild(iniTile);
 			updater(fr,fc);
 			clearInterval(moveAnim);
-			console.log("anim");
 		}
 		moveTile.style.left=cx+"px";
 		moveTile.style.top=cy+"px";
 		cx+=xMove*5;
 		cy+=yMove*5;
 	},1);
-
-	if(xMove==0&&yMove==0){
-		iniBox.innerHTML="";
-		iniBox.appendChild(iniTile);
-		updater(fr,fc);
-	}
 
 }
 
