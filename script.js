@@ -82,6 +82,8 @@ function SetUpBoard(){
 
 			event.preventDefault();
 
+			fixBoard();
+
 			if (event.keyCode === 37) {
 				pressLeft();
 			}
