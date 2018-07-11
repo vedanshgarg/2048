@@ -1,6 +1,10 @@
+html{
+	height:100%;
+}
 body{
 	margin: 0;
-	height: 100vh;
+	height: 100%;
+	overflow: hidden;
 	text-align: center;
 	display: flex;
 	flex-direction: column;
@@ -9,6 +13,8 @@ body{
 	font-weight: 900;
 }
 #full-Area{
+	height:100%;
+	overflow:hidden;
 	padding: 5px;
 	display: flex;
 	align-items: center;
