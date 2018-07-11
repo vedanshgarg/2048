@@ -12,6 +12,8 @@ var scoreTitle=document.querySelector('#score-title');
 var scoreValue=document.querySelector('#score-value');
 var board;
 var boardCount=0;
+button.style.height=showAreaHeight+"px";
+button.style.width=showAreaWidth+"px"
 
 var xDown = null;                                                        
 var yDown = null;
@@ -28,15 +30,18 @@ window.addEventListener("keyup", function(event) {
 
 
 button.addEventListener('click',function(){
-
+	let buttonFS=100;
 	let shrink=setInterval(function(){
-		if(button.clientHeight<=2){
+		if(button.clientHeight<=15){
+			button.style.width="0px";
+			button.style.height="0px";
 			clearInterval(shrink);
 		}
 
-		button.style.height=(button.clientHeight-2)+'px';
-		button.style.width=(button.clientWidth-6)+'px';
-		button.style.fontSize=(button.clientHeight*85/100) -2 +'px';
+		button.style.height=(button.clientHeight-(showAreaHeight/30))+'px';
+		button.style.width=(button.clientWidth-(showAreaWidth/30))+'px';
+		button.style.fontSize=buttonFS +'px';
+		buttonFS-=5;
 		
 	},1)
 
