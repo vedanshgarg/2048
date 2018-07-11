@@ -1,3 +1,4 @@
+"use strict";
 console.log('hello');
 var button=document.querySelector('#begin');
 var playArea=document.querySelector('#play-Area');
@@ -250,7 +251,10 @@ function pressLeft(){
 		
 	}
 	if (nextTile) {
-		AddTile();
+		setTimeout(function(){
+			AddTile();
+		},200);
+		
 	}
 	
 	
@@ -304,7 +308,9 @@ function pressRight(){
 		
 	}
 	if (nextTile) {
-		AddTile();
+		setTimeout(function(){
+			AddTile();
+		},200);
 	}
 	
 	
@@ -361,7 +367,9 @@ function pressUp(){
 		
 	}
 	if (nextTile) {
-		AddTile();
+		setTimeout(function(){
+			AddTile();
+		},200);
 	}
 	
 		
@@ -413,7 +421,9 @@ function pressDown(){
 		
 	}
 	if (nextTile) {
-		AddTile();
+		setTimeout(function(){
+			AddTile();
+		},200);
 	}
 	
 	
@@ -435,7 +445,6 @@ function mover(ir,ic,fr,fc){
 	let moveTile=document.createElement('div');
 
 	moveTile.id=iniId+"-m";
-	delId=iniId+"-m";
 	moveTile.className = iniTile.className;
 	moveTile.innerHTML=iniTile.innerHTML;
 	moveTile.style.position="absolute";
