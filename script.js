@@ -45,7 +45,7 @@ button.addEventListener('click',function(){
 			return;
 		}
 		let grow=setInterval(function(){
-			if((fullArea.clientHeight>showAreaHeight-25)||(playArea.clientWidth>showAreaWidth-25)){
+			if((fullArea.clientHeight>showAreaHeight-25)||(playArea.clientWidth>showAreaWidth-70)){
 				clearInterval(grow);
 			}
 			playArea.style.height=(playArea.clientHeight+10)+'px';
@@ -53,7 +53,7 @@ button.addEventListener('click',function(){
 			leftPane.style.fontSize=(playArea.clientHeight/8)+'px';
 			scoreTitle.style.fontSize=(playArea.clientHeight/22)+'px';
 			scoreValue.style.fontSize=(playArea.clientHeight/10)+'px';
-			gameHeader.style.height=(gameHeader.clientHeight+3)+'px';
+			gameHeader.style.height=(gameHeader.clientHeight+5)+'px';
 			gameHeader.style.width=(playArea.clientWidth)+'px';
 
 		},1);
