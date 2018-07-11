@@ -45,7 +45,7 @@ button.addEventListener('click',function(){
 			return;
 		}
 		let grow=setInterval(function(){
-			if((fullArea.clientHeight>showAreaHeight-25)||(playArea.clientWidth>showAreaWidth-70)){
+			if((fullArea.clientHeight>showAreaHeight-60)||(playArea.clientWidth>showAreaWidth-120)){
 				clearInterval(grow);
 			}
 			playArea.style.height=(playArea.clientHeight+10)+'px';
