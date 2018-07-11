@@ -4,6 +4,7 @@ var button=document.querySelector('#begin');
 var fullArea=document.querySelector('#full-Area');
 var showArea=document.querySelector('#show-Area');
 var showAreaHeight=showArea.clientHeight;
+var showAreaWidth=showArea.clientWidth;
 var playArea=document.querySelector('#play-Area');
 var gameHeader=document.querySelector('#game-header');
 var leftPane=document.querySelector('#left-pane');
@@ -44,7 +45,7 @@ button.addEventListener('click',function(){
 			return;
 		}
 		let grow=setInterval(function(){
-			if(fullArea.clientHeight>showAreaHeight-20){
+			if((fullArea.clientHeight>showAreaHeight-25)||(playArea.clientWidth>showAreaWidth-25)){
 				clearInterval(grow);
 			}
 			playArea.style.height=(playArea.clientHeight+10)+'px';
