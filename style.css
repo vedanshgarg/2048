@@ -12,9 +12,16 @@ body{
 	font-family: sans-serif;
 	font-weight: 900;
 }
-#full-Area{
+#show-Area{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	height:100%;
 	overflow:hidden;
+
+}
+#full-Area{
+	
 	padding: 5px;
 	display: flex;
 	align-items: center;

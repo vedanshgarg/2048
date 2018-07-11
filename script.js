@@ -1,6 +1,9 @@
 "use strict";
 var running=false;
 var button=document.querySelector('#begin');
+var fullArea=document.querySelector('#full-Area');
+var showArea=document.querySelector('#show-Area');
+var showAreaHeight=showArea.clientHeight;
 var playArea=document.querySelector('#play-Area');
 var gameHeader=document.querySelector('#game-header');
 var leftPane=document.querySelector('#left-pane');
@@ -41,7 +44,7 @@ button.addEventListener('click',function(){
 			return;
 		}
 		let grow=setInterval(function(){
-			if(playArea.clientHeight>500){
+			if(fullArea.clientHeight>showAreaHeight-20){
 				clearInterval(grow);
 			}
 			playArea.style.height=(playArea.clientHeight+10)+'px';
@@ -165,7 +168,7 @@ function tryAdd(){
 			addTile.style.width="50px";
 			let fs=0;
 			let growTile=setInterval(function(){
-				if(addTile.clientHeight>=emptyTile.clientHeight-20){
+				if(addTile.clientHeight>=emptyTile.clientHeight-30){
 					addTile.style.height="98%";
 					addTile.style.width="98%";
 					clearInterval(growTile);
