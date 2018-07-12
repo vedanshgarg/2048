@@ -1,10 +1,14 @@
 "use strict";
 var running=false;
+var AM=1;
 var button=document.querySelector('#begin');
 var fullArea=document.querySelector('#full-Area');
 var showArea=document.querySelector('#show-Area');
 var showAreaHeight=showArea.clientHeight;
 var showAreaWidth=showArea.clientWidth;
+if(showAreaHeight>showAreaWidth){
+	AM=3;
+}
 var playArea=document.querySelector('#play-Area');
 var gameHeader=document.querySelector('#game-header');
 var leftPane=document.querySelector('#left-pane');
@@ -32,18 +36,18 @@ window.addEventListener("keyup", function(event) {
 button.addEventListener('click',function(){
 	let buttonFS=100;
 	let shrink=setInterval(function(){
-		if(button.clientHeight<=15){
+		if(button.clientHeight<=30||button.clientWidth<=30){
 			button.style.width="0px";
 			button.style.height="0px";
 			clearInterval(shrink);
 		}
 
-		button.style.height=(button.clientHeight-(showAreaHeight/30))+'px';
-		button.style.width=(button.clientWidth-(showAreaWidth/30))+'px';
+		button.style.height=(button.clientHeight-(showAreaHeight*AM/30))+'px';
+		button.style.width=(button.clientWidth-(showAreaWidth*AM/30))+'px';
 		button.style.fontSize=buttonFS +'px';
-		buttonFS-=5;
+		buttonFS-=2*AM;
 		
-	},1)
+	},1*AM)
 
 	setTimeout(function(){
 		if(playArea.clientHeight>500){
@@ -53,20 +57,20 @@ button.addEventListener('click',function(){
 			if((fullArea.clientHeight>showAreaHeight-60)||(playArea.clientWidth>showAreaWidth-120)){
 				clearInterval(grow);
 			}
-			playArea.style.height=(playArea.clientHeight+10)+'px';
-			playArea.style.width=(playArea.clientWidth+10)+'px';
+			playArea.style.height=(playArea.clientHeight+10*AM)+'px';
+			playArea.style.width=(playArea.clientWidth+10*AM)+'px';
 			leftPane.style.fontSize=(playArea.clientHeight/8)+'px';
 			scoreTitle.style.fontSize=(playArea.clientHeight/22)+'px';
 			scoreValue.style.fontSize=(playArea.clientHeight/10)+'px';
-			gameHeader.style.height=(gameHeader.clientHeight+5)+'px';
+			gameHeader.style.height=(gameHeader.clientHeight+5*AM)+'px';
 			gameHeader.style.width=(playArea.clientWidth)+'px';
 
-		},1);
-	},500);
+		},1*AM);
+	},200);
 
 	setTimeout(function(){
 		playArea.style.padding="5px";
-	},500);
+	},200);
 
 	SetUpBoard();
 
@@ -169,15 +173,23 @@ function tryAdd(){
 		boardCount+=1;
 
 		if(boardCount>1){
+			if (AM!=1) {
+				addTile.style.height=(emptyTile.clientHeight-5)+"px";
+				addTile.style.width=(emptyTile.clientWidth-5)+"px";
+				addTile.style.fontSize=(70)+"px";
+			}else{
+
 			addTile.style.fontSize="0px";
 			addTile.style.height="50px";
 			addTile.style.width="50px";
 			let fs=0;
 			let growTile=setInterval(function(){
 				if(addTile.clientHeight>=emptyTile.clientHeight-30){
-					addTile.style.height="98%";
-					addTile.style.width="98%";
+					addTile.style.height=(emptyTile.clientHeight-5)+"px";
+					addTile.style.width=(emptyTile.clientWidth-5)+"px";
+					addTile.style.fontSize=(70)+"px";
 					clearInterval(growTile);
+
 				}
 				if (fs<=70) {
 					addTile.style.fontSize=(fs)+"px";
@@ -188,6 +200,7 @@ function tryAdd(){
 				fs+=7;
 			},1);
 
+			}
 
 		}else{
 			addTile.style.fontSize="0px";
@@ -204,7 +217,7 @@ function tryAdd(){
 					fs+=2;
 				},1);
 
-			},500);
+			},200);
 
 
 		}
@@ -481,9 +494,9 @@ function mover(ir,ic,fr,fc){
 		}
 		moveTile.style.left=cx+"px";
 		moveTile.style.top=cy+"px";
-		cx+=xMove*5;
-		cy+=yMove*5;
-	},1);
+		cx+=xMove*5*AM;
+		cy+=yMove*5*AM;
+	},1*AM);
 
 }
 
