@@ -11,7 +11,9 @@ if(showAreaHeight>showAreaWidth){
 }
 var playArea=document.querySelector('#play-Area');
 var gameHeader=document.querySelector('#game-header');
-var leftPane=document.querySelector('#left-pane');
+var topPane=document.querySelector('#top-pane');
+var HighScoreTitle=document.querySelector('#high-score-title');
+var HighScoreValue=document.querySelector('#high-score-value');
 var scoreTitle=document.querySelector('#score-title');
 var scoreValue=document.querySelector('#score-value');
 var board;
@@ -24,7 +26,7 @@ var score=0;
 var HS=localStorage.getItem("HS");
 
 if (typeof(Storage) !== "undefined") {
-    document.getElementById("high-score-value").innerHTML =HS;
+    HighScoreValue.innerHTML =HS;
 }
 
 
@@ -63,10 +65,12 @@ button.addEventListener('click',function(){
 			}
 			playArea.style.height=(playArea.clientHeight+10*AM)+'px';
 			playArea.style.width=(playArea.clientWidth+10*AM)+'px';
-			leftPane.style.fontSize=(playArea.clientHeight/8)+'px';
+			topPane.style.fontSize=(playArea.clientHeight/8)+'px';
+			HighScoreTitle.style.fontSize=(playArea.clientHeight/22)+'px';
+			HighScoreValue.style.fontSize=(playArea.clientHeight/10)+'px';
 			scoreTitle.style.fontSize=(playArea.clientHeight/22)+'px';
 			scoreValue.style.fontSize=(playArea.clientHeight/10)+'px';
-			gameHeader.style.height=(gameHeader.clientHeight+5*AM)+'px';
+			gameHeader.style.height=(gameHeader.clientHeight+8*AM)+'px';
 			gameHeader.style.width=(playArea.clientWidth)+'px';
 
 		},1*AM);
@@ -266,7 +270,7 @@ function pressLeft(){
 						if(score>HS){
 							HS=score;
 							localStorage.setItem("HS", HS);
-							document.getElementById("high-score-value").innerHTML =HS;
+							HighScoreValue.innerHTML =HS;
 
 						}
 
@@ -332,7 +336,7 @@ function pressRight(){
 						if(score>HS){
 							HS=score;
 							localStorage.setItem("HS", HS);
-							document.getElementById("high-score-value").innerHTML =HS;
+							HighScoreValue.innerHTML =HS;
 
 						}
 
@@ -399,7 +403,7 @@ function pressUp(){
 						if(score>HS){
 							HS=score;
 							localStorage.setItem("HS", HS);
-							document.getElementById("high-score-value").innerHTML =HS;
+							HighScoreValue.innerHTML =HS;
 
 						}
 						boardCount--;
@@ -461,7 +465,7 @@ function pressDown(){
 						if(score>HS){
 							HS=score;
 							localStorage.setItem("HS", HS);
-							document.getElementById("high-score-value").innerHTML =HS;
+							HighScoreValue.innerHTML =HS;
 
 						}
 						boardCount--;
