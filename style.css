@@ -49,6 +49,7 @@ body{
 	flex-direction: column;
 }
 #top-pane{
+	font-size: 0px;
 	height: 50%;
 	color: white;
 	display: flex;

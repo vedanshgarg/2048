@@ -23,10 +23,14 @@ button.style.width=showAreaWidth+"px";
 var xDown = null;                                                        
 var yDown = null;
 var score=0;
-var HS=localStorage.getItem("HS");
+var HS=0;
 
 if (typeof(Storage) !== "undefined") {
+	HS=localStorage.getItem("HS");
     HighScoreValue.innerHTML =HS;
+    if (HighScoreValue.innerHTML=="") {
+    	HighScoreValue.innerHTML=0; 
+    }
 }
 
 
