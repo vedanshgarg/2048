@@ -17,11 +17,15 @@ var scoreValue=document.querySelector('#score-value');
 var board;
 var boardCount=0;
 button.style.height=showAreaHeight+"px";
-button.style.width=showAreaWidth+"px"
-
+button.style.width=showAreaWidth+"px";
 var xDown = null;                                                        
 var yDown = null;
+var score=0;
+var HS=localStorage.getItem("HS");
 
+if (typeof(Storage) !== "undefined") {
+    document.getElementById("high-score-value").innerHTML =HS;
+}
 
 
 window.addEventListener("keyup", function(event) {
@@ -255,7 +259,17 @@ function pressLeft(){
 				if (currN!=start) {
 					if(board[r][currN-1]==board[r][currN]){
 						board[r][currN-1]*=2;
-						scoreValue.innerHTML=parseInt(scoreValue.innerHTML)+(board[r][currN-1]);
+
+						score=score + board[r][currN-1];
+						scoreValue.innerHTML=score;
+						
+						if(score>HS){
+							HS=score;
+							localStorage.setItem("HS", HS);
+							document.getElementById("high-score-value").innerHTML =HS;
+
+						}
+
 						boardCount--;
 						board[r][currN]=undefined;
 						moveBy++;
@@ -311,7 +325,17 @@ function pressRight(){
 				if (currN!=start) {
 					if(board[r][currN+1]==board[r][currN]){
 						board[r][currN+1]*=2;
-						scoreValue.innerHTML=parseInt(scoreValue.innerHTML)+(board[r][currN+1]);
+						
+						score=score + board[r][currN+1];
+						scoreValue.innerHTML=score;
+						
+						if(score>HS){
+							HS=score;
+							localStorage.setItem("HS", HS);
+							document.getElementById("high-score-value").innerHTML =HS;
+
+						}
+
 						boardCount--;
 						board[r][currN]=undefined;
 						moveBy++;
@@ -367,7 +391,17 @@ function pressUp(){
 				if (currN!=start) {
 					if(board[currN-1][c]==board[currN][c]){
 						board[currN-1][c]*=2;
-						scoreValue.innerHTML=parseInt(scoreValue.innerHTML)+(board[currN-1][c]);
+
+
+						score=score + board[currN-1][c];
+						scoreValue.innerHTML=score;
+						
+						if(score>HS){
+							HS=score;
+							localStorage.setItem("HS", HS);
+							document.getElementById("high-score-value").innerHTML =HS;
+
+						}
 						boardCount--;
 						board[currN][c]=undefined;
 						moveBy++;
@@ -420,7 +454,16 @@ function pressDown(){
 				if (currN!=start) {
 					if(board[currN+1][c]==board[currN][c]){
 						board[currN+1][c]*=2;
-						scoreValue.innerHTML=parseInt(scoreValue.innerHTML)+(board[currN+1][c]);
+
+						score=score + board[currN+1][c];
+						scoreValue.innerHTML=score;
+						
+						if(score>HS){
+							HS=score;
+							localStorage.setItem("HS", HS);
+							document.getElementById("high-score-value").innerHTML =HS;
+
+						}
 						boardCount--;
 						board[currN][c]=undefined;
 						moveBy++;
