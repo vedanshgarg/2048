@@ -12,8 +12,8 @@ if(showAreaHeight>showAreaWidth){
 var playArea=document.querySelector('#play-Area');
 var gameHeader=document.querySelector('#game-header');
 var topPane=document.querySelector('#top-pane');
-var HighScoreTitle=document.querySelector('#high-score-title');
-var HighScoreValue=document.querySelector('#high-score-value');
+var highScoreTitle=document.querySelector('#high-score-title');
+var highScoreValue=document.querySelector('#high-score-value');
 var scoreTitle=document.querySelector('#score-title');
 var scoreValue=document.querySelector('#score-value');
 var board;
@@ -27,9 +27,9 @@ var HS=0;
 
 if (typeof(Storage) !== "undefined") {
 	HS=localStorage.getItem("HS");
-    HighScoreValue.innerHTML =HS;
-    if (HighScoreValue.innerHTML=="") {
-    	HighScoreValue.innerHTML=0; 
+    highScoreValue.innerHTML =HS;
+    if (highScoreValue.innerHTML=="") {
+    	highScoreValue.innerHTML=0; 
     }
 }
 
@@ -70,8 +70,8 @@ button.addEventListener('click',function(){
 			playArea.style.height=(playArea.clientHeight+10*AM)+'px';
 			playArea.style.width=(playArea.clientWidth+10*AM)+'px';
 			topPane.style.fontSize=(playArea.clientHeight/8)+'px';
-			HighScoreTitle.style.fontSize=(playArea.clientHeight/22)+'px';
-			HighScoreValue.style.fontSize=(playArea.clientHeight/10)+'px';
+			highScoreTitle.style.fontSize=(playArea.clientHeight/22)+'px';
+			highScoreValue.style.fontSize=(playArea.clientHeight/10)+'px';
 			scoreTitle.style.fontSize=(playArea.clientHeight/22)+'px';
 			scoreValue.style.fontSize=(playArea.clientHeight/10)+'px';
 			gameHeader.style.height=(gameHeader.clientHeight+8*AM)+'px';
@@ -274,7 +274,7 @@ function pressLeft(){
 						if(score>HS){
 							HS=score;
 							localStorage.setItem("HS", HS);
-							HighScoreValue.innerHTML =HS;
+							highScoreValue.innerHTML =HS;
 
 						}
 
@@ -340,7 +340,7 @@ function pressRight(){
 						if(score>HS){
 							HS=score;
 							localStorage.setItem("HS", HS);
-							HighScoreValue.innerHTML =HS;
+							highScoreValue.innerHTML =HS;
 
 						}
 
@@ -407,7 +407,7 @@ function pressUp(){
 						if(score>HS){
 							HS=score;
 							localStorage.setItem("HS", HS);
-							HighScoreValue.innerHTML =HS;
+							highScoreValue.innerHTML =HS;
 
 						}
 						boardCount--;
@@ -469,7 +469,7 @@ function pressDown(){
 						if(score>HS){
 							HS=score;
 							localStorage.setItem("HS", HS);
-							HighScoreValue.innerHTML =HS;
+							highScoreValue.innerHTML =HS;
 
 						}
 						boardCount--;
