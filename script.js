@@ -127,9 +127,6 @@ function SetUpBoard(){
 			if (event.keyCode === 40) {
 				pressDown();
 			}
-			if (event.keyCode === 13) {
-				AddTile();
-			}
 		};
 	}
 
