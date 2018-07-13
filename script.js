@@ -211,11 +211,12 @@ function tryAdd(){
 				}
 				if (fs<70) {
 					addTile.style.fontSize=(fs)+"px";
+					console.log(fs);
 				}
 
 				addTile.style.height=(addTile.clientHeight+5)+'px';
 				addTile.style.width=(addTile.clientWidth+5)+'px';
-				fs+=7;
+				fs+=10;
 			},1);
 
 			}
