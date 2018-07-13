@@ -200,14 +200,16 @@ function tryAdd(){
 			addTile.style.width="50px";
 			let fs=0;
 			let growTile=setInterval(function(){
-				if(addTile.clientHeight>=emptyTile.clientHeight-30){
+				if(addTile.clientHeight>=(emptyTile.clientHeight-30)){
+					console.log('test');
 					addTile.style.height=(emptyTile.clientHeight-5)+"px";
 					addTile.style.width=(emptyTile.clientWidth-5)+"px";
-					addTile.style.fontSize=(70)+"px";
+					addTile.style.fontSize="70px";
 					clearInterval(growTile);
+					console.log("here too");
 
 				}
-				if (fs<=70) {
+				if (fs<70) {
 					addTile.style.fontSize=(fs)+"px";
 				}
 
