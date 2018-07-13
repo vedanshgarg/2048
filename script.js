@@ -18,8 +18,6 @@ var scoreTitle=document.querySelector('#score-title');
 var scoreValue=document.querySelector('#score-value');
 var board;
 var boardCount=0;
-button.style.height=showAreaHeight+"px";
-button.style.width=showAreaWidth+"px";
 var xDown = null;                                                        
 var yDown = null;
 var score=0;
@@ -44,45 +42,54 @@ window.addEventListener("keyup", function(event) {
 
 
 button.addEventListener('click',function(){
-	let buttonFS=100;
-	let shrink=setInterval(function(){
-		if(button.clientHeight<=30||button.clientWidth<=30){
-			button.style.width="0px";
-			button.style.height="0px";
-			clearInterval(shrink);
-		}
-
-		button.style.height=(button.clientHeight-(showAreaHeight*AM/30))+'px';
-		button.style.width=(button.clientWidth-(showAreaWidth*AM/30))+'px';
-		button.style.fontSize=buttonFS +'px';
-		buttonFS-=2*AM;
-		
-	},1*AM)
+	button.style.height="0px";
+	button.style.width="0px";
+	button.style.fontSize="0px";
 
 	setTimeout(function(){
-		if(playArea.clientHeight>500){
-			return;
+
+		if(showAreaHeight>showAreaWidth){
+			playArea.style.width=showAreaWidth-30+"px";
+			playArea.style.height=showAreaWidth-30+"px";
+			gameHeader.style.height=(showAreaWidth/2)+"px";
+			gameHeader.style.width=(showAreaWidth-30)+"px";
+			scoreTitle.style.fontSize=(showAreaWidth/20)+"px";
+			scoreValue.style.fontSize=(showAreaWidth/15)+"px";
+			highScoreTitle.style.fontSize=(showAreaWidth/20)+"px";
+			highScoreValue.style.fontSize=(showAreaWidth/15)+"px";
+			topPane.style.fontSize=(showAreaWidth/10)+"px";
+		}else{
+			playArea.style.width=(showAreaHeight*2/3)-30+"px";
+			playArea.style.height=(showAreaHeight*2/3)-30+"px";
+			gameHeader.style.height=(showAreaHeight/3)+"px";
+			gameHeader.style.width=(showAreaHeight*2/3)-30+"px";
+			scoreTitle.style.fontSize=(showAreaHeight/30)+"px";
+			scoreValue.style.fontSize=(showAreaHeight*2/45)+"px";
+			highScoreTitle.style.fontSize=(showAreaHeight/30)+"px";
+			highScoreValue.style.fontSize=(showAreaHeight*2/45)+"px";
+			topPane.style.fontSize=(showAreaWidth*2/30)+"px";
 		}
-		let grow=setInterval(function(){
-			if((fullArea.clientHeight>showAreaHeight-60)||(playArea.clientWidth>showAreaWidth-120)){
-				clearInterval(grow);
-			}
-			playArea.style.height=(playArea.clientHeight+10*AM)+'px';
-			playArea.style.width=(playArea.clientWidth+10*AM)+'px';
-			topPane.style.fontSize=(playArea.clientHeight/8)+'px';
-			highScoreTitle.style.fontSize=(playArea.clientHeight/22)+'px';
-			highScoreValue.style.fontSize=(playArea.clientHeight/10)+'px';
-			scoreTitle.style.fontSize=(playArea.clientHeight/22)+'px';
-			scoreValue.style.fontSize=(playArea.clientHeight/10)+'px';
-			gameHeader.style.height=(gameHeader.clientHeight+8*AM)+'px';
-			gameHeader.style.width=(playArea.clientWidth)+'px';
 
-		},1*AM);
-	},200);
+		// let grow=setInterval(function(){
+		// 	if((fullArea.clientHeight>showAreaHeight-60)||(playArea.clientWidth>showAreaWidth-120)){
+		// 		clearInterval(grow);
+		// 	}
+		// 	playArea.style.height=(playArea.clientHeight+10*AM)+'px';
+		// 	playArea.style.width=(playArea.clientWidth+10*AM)+'px';
+		// 	topPane.style.fontSize=(playArea.clientHeight/8)+'px';
+		// 	highScoreTitle.style.fontSize=(playArea.clientHeight/22)+'px';
+		// 	highScoreValue.style.fontSize=(playArea.clientHeight/10)+'px';
+		// 	scoreTitle.style.fontSize=(playArea.clientHeight/22)+'px';
+		// 	scoreValue.style.fontSize=(playArea.clientHeight/10)+'px';
+		// 	gameHeader.style.height=(gameHeader.clientHeight+8*AM)+'px';
+		// 	gameHeader.style.width=(playArea.clientWidth)+'px';
 
-	setTimeout(function(){
-		playArea.style.padding="5px";
-	},200);
+		// },1*AM);
+	},400);
+
+	// setTimeout(function(){
+	// 	playArea.style.padding="5px";
+	// },200);
 
 	SetUpBoard();
 
@@ -226,7 +233,7 @@ function tryAdd(){
 					fs+=2;
 				},1);
 
-			},200);
+			},400);
 
 
 		}
