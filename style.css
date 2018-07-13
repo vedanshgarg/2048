@@ -167,42 +167,42 @@ body{
 .n2{
 	background-color: #eee4da;
 	color: #444343;
-	font-size: 70px;
+	font-size: 80px;
 }
 .n4{
 	background-color: #ecd9b2;
 	color: #444343;
-	font-size: 70px;
+	font-size: 80px;
 }
 .n8{
 	background-color: #f2b179;
-	font-size: 70px;
+	font-size: 80px;
 }
 .n16{
 	background-color: #f59562;
-	font-size: 60px;
+	font-size: 65px;
 }
 .n32{
 	background-color: #f57b5e;
-	font-size: 60px;
+	font-size: 65px;
 }
 .n64{
 	background-color: #f65e3b;
-	font-size: 60px;
+	font-size: 65px;
 }
 .n128{
 	background-color: #edcf72;
-	font-size: 45px;
+	font-size: 50px;
 	box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.2381), inset 0 0 0 1px rgba(255, 255, 255, 0.14286);
 }
 .n256{
 	background-color: #edca59;
-	font-size: 45px;
+	font-size: 50px;
 	box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.31746), inset 0 0 0 1px rgba(255, 255, 255, 0.19048);
 }
 .n512{
 	background: #edc850;
-	font-size: 45px;
+	font-size: 50px;
     box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.39683), inset 0 0 0 1px rgba(255, 255, 255, 0.2381);
 }
 .n1024{

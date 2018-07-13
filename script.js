@@ -52,7 +52,7 @@ button.addEventListener('click',function(){
 			playArea.style.width=showAreaWidth-30+"px";
 			playArea.style.height=showAreaWidth-30+"px";
 			gameHeader.style.height=(showAreaWidth/2)+"px";
-			gameHeader.style.width=(showAreaWidth-30)+"px";
+			gameHeader.style.width=(showAreaWidth-20)+"px";
 			scoreTitle.style.fontSize=(showAreaWidth/20)+"px";
 			scoreValue.style.fontSize=(showAreaWidth/15)+"px";
 			highScoreTitle.style.fontSize=(showAreaWidth/20)+"px";
@@ -62,7 +62,7 @@ button.addEventListener('click',function(){
 			playArea.style.width=(showAreaHeight*2/3)-30+"px";
 			playArea.style.height=(showAreaHeight*2/3)-30+"px";
 			gameHeader.style.height=(showAreaHeight/3)+"px";
-			gameHeader.style.width=(showAreaHeight*2/3)-30+"px";
+			gameHeader.style.width=(showAreaHeight*2/3)-20+"px";
 			scoreTitle.style.fontSize=(showAreaHeight/30)+"px";
 			scoreValue.style.fontSize=(showAreaHeight*2/45)+"px";
 			highScoreTitle.style.fontSize=(showAreaHeight/30)+"px";
@@ -70,26 +70,11 @@ button.addEventListener('click',function(){
 			topPane.style.fontSize=(showAreaWidth*2/30)+"px";
 		}
 
-		// let grow=setInterval(function(){
-		// 	if((fullArea.clientHeight>showAreaHeight-60)||(playArea.clientWidth>showAreaWidth-120)){
-		// 		clearInterval(grow);
-		// 	}
-		// 	playArea.style.height=(playArea.clientHeight+10*AM)+'px';
-		// 	playArea.style.width=(playArea.clientWidth+10*AM)+'px';
-		// 	topPane.style.fontSize=(playArea.clientHeight/8)+'px';
-		// 	highScoreTitle.style.fontSize=(playArea.clientHeight/22)+'px';
-		// 	highScoreValue.style.fontSize=(playArea.clientHeight/10)+'px';
-		// 	scoreTitle.style.fontSize=(playArea.clientHeight/22)+'px';
-		// 	scoreValue.style.fontSize=(playArea.clientHeight/10)+'px';
-		// 	gameHeader.style.height=(gameHeader.clientHeight+8*AM)+'px';
-		// 	gameHeader.style.width=(playArea.clientWidth)+'px';
-
-		// },1*AM);
 	},400);
 
-	// setTimeout(function(){
-	// 	playArea.style.padding="5px";
-	// },200);
+	setTimeout(function(){
+		playArea.style.padding="5px";
+	},500);
 
 	SetUpBoard();
 
@@ -526,6 +511,7 @@ function mover(ir,ic,fr,fc){
 	moveTile.className = iniTile.className;
 
 	moveTile.innerHTML=iniTile.innerHTML;
+	let number=parseInt(iniTile.innerHTML);
 	
 	moveTile.style.position="absolute";
 	moveTile.style.height=iniBox.clientHeight+"px";
@@ -547,7 +533,7 @@ function mover(ir,ic,fr,fc){
 		if(((cx*xMove)>(xMove*finTileRect.x))||((cy*yMove)>(yMove*finTileRect.y))){
 			iniBox.innerHTML="";
 			iniBox.appendChild(iniTile);
-			updater(fr,fc);
+			updater(fr,fc,number);
 			clearInterval(moveAnim);
 		}
 		moveTile.style.left=cx+"px";
@@ -558,10 +544,11 @@ function mover(ir,ic,fr,fc){
 
 }
 
-function updater(fr,fc){
+function updater(fr,fc,number){
 	let num=board[fr-1][fc-1];
 	let numId="#t-"+(fr)+"-"+(fc);
 	let numTile=document.querySelector(numId);
+	numTile.innerHTML=num;
 	switch(num) {
     case 2:
         numTile.style.fontSize="70px";
@@ -601,11 +588,34 @@ function updater(fr,fc){
 	}
 	if(num==undefined){
 		numTile.innerHTML="";
+		numTile.className="tile";
+	}else if(num==number){
+		numTile.innerHTML=num;
+		numTile.className="tile n"+num;
 	}else{
 		numTile.innerHTML=num;
+		numTile.className="tile n"+num;
+		let glowH=numTile.clientHeight;
+		let glowW=numTile.clientWidth;
+		numTile.style.height=glowH+"px";
+		numTile.style.width=glowW+"px";
+		setTimeout(function(){
+			numTile.style.position="fixed";
+			numTile.style.transition="all 0.1s";
+			numTile.transitionTimingFunction = "linear";
+			numTile.style.height=glowH+20+"px";
+			numTile.style.width=glowW+20+"px";
+			numTile.className="tile n"+num;
+			let glowTimer=setTimeout(function(){
+				numTile.style.height="";
+				numTile.style.width="";
+				numTile.style.position="";
+				numTile.style.transition="";
+			},100);
+
+		},20);
+			
 	}
-	
-	numTile.className="tile n"+num;
 
 }
 
