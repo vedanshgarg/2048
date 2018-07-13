@@ -602,6 +602,7 @@ function updater(fr,fc,number){
 		setTimeout(function(){
 			numTile.style.position="fixed";
 			numTile.style.transition="all 0.1s";
+			numTile.style.boxShadow="inset 0px 0px 20px 3px rgba(37,207,40,1)";
 			numTile.transitionTimingFunction = "linear";
 			numTile.style.height=glowH+20+"px";
 			numTile.style.width=glowW+20+"px";
@@ -609,6 +610,7 @@ function updater(fr,fc,number){
 			let glowTimer=setTimeout(function(){
 				numTile.style.height="";
 				numTile.style.width="";
+				numTile.style.boxShadow="";
 				numTile.style.position="";
 				numTile.style.transition="";
 			},100);
