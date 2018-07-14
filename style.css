@@ -60,6 +60,9 @@ body{
 	background-color:#4caf50;
 	transition: all 0.4s;
 }
+#top-pane:hover{
+	cursor:pointer;
+}
 #mid-pane{
 	display: flex;
 	height:50%;

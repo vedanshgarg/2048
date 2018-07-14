@@ -17,10 +17,15 @@ var highScoreValue=document.querySelector('#high-score-value');
 var scoreTitle=document.querySelector('#score-title');
 var scoreValue=document.querySelector('#score-value');
 var board;
-var boardCount=0;
 var xDown = null;                                                        
 var yDown = null;
-var score=0;
+var score=localStorage.getItem("score");
+if (score==null) {
+	score=0;
+}else{
+	score=parseInt(score);
+	scoreValue.innerHTML=score;
+}
 var HS=0;
 
 if (typeof(Storage) !== "undefined") {
@@ -81,23 +86,51 @@ button.addEventListener('click',function(){
 });
 
 
+topPane.addEventListener('click',function(){
+	console.log('click');
+	localStorage.removeItem('board');
+	localStorage.removeItem('score');
+	running=false;
+	score=0;
+	scoreValue.innerHTML="0";
+	SetUpBoard();
+});
+
+
+
 
 
 
 function SetUpBoard(){
 	if(running==false){
 		running=true;
-		board= new Array(4);
-		for (var i = 0; i < 4; i++) {
-			board[i] = new Array(4);
-		}
-		for (let r =0 ; r <= 3; r++) {
-			for(let c=0; c<=3 ;c++){
-				board[r][c]=undefined;
-			}
-		}
 
-		AddTile();
+
+		if(localStorage.getItem('board')==null){
+			board= new Array(4);
+			for (var i = 0; i < 4; i++) {
+				board[i] = new Array(4);
+			}
+			for (let r =0 ; r <= 3; r++) {
+				for(let c=0; c<=3 ;c++){
+					board[r][c]=undefined;
+				}
+			}
+			fixBoard();
+			setTimeout(function(){
+				AddTile();
+			},800);
+			
+		}else{
+			board= JSON.parse(localStorage.getItem("board"));
+			setTimeout(function(){
+				fixBoard();
+			},800);
+			
+		}
+		
+
+		
 		document.addEventListener('touchstart', handleTouchStart, false);        
 		document.addEventListener('touchmove', handleTouchMove, false);
 
@@ -171,58 +204,36 @@ function tryAdd(){
 		let emptyTile=document.querySelector(".empty-tile");
 		addTile.innerText=2;
 		addTile.className="tile n2";
-		boardCount+=1;
 
-		if(boardCount>1){
-			if (AM!=1) {
+		if (AM!=1) {
+			addTile.style.height=(emptyTile.clientHeight-5)+"px";
+			addTile.style.width=(emptyTile.clientWidth-5)+"px";
+			addTile.style.fontSize=(70)+"px";
+		}else{
+
+		addTile.style.fontSize="0px";
+		addTile.style.height="50px";
+		addTile.style.width="50px";
+		let fs=0;
+		let growTile=setInterval(function(){
+			if(addTile.clientHeight>=(emptyTile.clientHeight-30)){
+				console.log('test');
 				addTile.style.height=(emptyTile.clientHeight-5)+"px";
 				addTile.style.width=(emptyTile.clientWidth-5)+"px";
-				addTile.style.fontSize=(70)+"px";
-			}else{
-
-			addTile.style.fontSize="0px";
-			addTile.style.height="50px";
-			addTile.style.width="50px";
-			let fs=0;
-			let growTile=setInterval(function(){
-				if(addTile.clientHeight>=(emptyTile.clientHeight-30)){
-					console.log('test');
-					addTile.style.height=(emptyTile.clientHeight-5)+"px";
-					addTile.style.width=(emptyTile.clientWidth-5)+"px";
-					addTile.style.fontSize="70px";
-					clearInterval(growTile);
-					console.log("here too");
-
-				}
-				if (fs<70) {
-					addTile.style.fontSize=(fs)+"px";
-					console.log(fs);
-				}
-
-				addTile.style.height=(addTile.clientHeight+5)+'px';
-				addTile.style.width=(addTile.clientWidth+5)+'px';
-				fs+=10;
-			},1);
+				addTile.style.fontSize="70px";
+				clearInterval(growTile);
+				console.log("here too");
 
 			}
+			if (fs<70) {
+				addTile.style.fontSize=(fs)+"px";
+				console.log(fs);
+			}
 
-		}else{
-			addTile.style.fontSize="0px";
-			setTimeout(function(){
-				let fs=0;
-				let growTile=setInterval(function(){
-					if(fs>=70){
-						addTile.style.height="99%";
-						addTile.style.width="99%";
-						addTile.style.fontSize="70px";
-						clearInterval(growTile);
-					}
-					addTile.style.fontSize=(fs)+"px";
-					fs+=2;
-				},1);
-
-			},400);
-
+			addTile.style.height=(addTile.clientHeight+5)+'px';
+			addTile.style.width=(addTile.clientWidth+5)+'px';
+			fs+=10;
+		},1);
 
 		}
 
@@ -269,8 +280,6 @@ function pressLeft(){
 							highScoreValue.innerHTML =HS;
 
 						}
-
-						boardCount--;
 						board[r][currN]=undefined;
 						moveBy++;
 						currN--;
@@ -336,7 +345,6 @@ function pressRight(){
 
 						}
 
-						boardCount--;
 						board[r][currN]=undefined;
 						moveBy++;
 						currN++;
@@ -402,7 +410,6 @@ function pressUp(){
 							highScoreValue.innerHTML =HS;
 
 						}
-						boardCount--;
 						board[currN][c]=undefined;
 						moveBy++;
 						currN--;
@@ -464,7 +471,6 @@ function pressDown(){
 							highScoreValue.innerHTML =HS;
 
 						}
-						boardCount--;
 						board[currN][c]=undefined;
 						moveBy++;
 						currN++;
@@ -495,6 +501,9 @@ function pressDown(){
 }
 
 function mover(ir,ic,fr,fc){
+//##############################################################################3
+	localStorage.setItem("board", JSON.stringify(board));
+	localStorage.setItem("score",score);
 
 	let iniId="#t-"+(ir)+"-"+(ic);
 	let iniTile=document.querySelector(iniId);
